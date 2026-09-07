@@ -34,7 +34,7 @@ export default function GameCategories() {
         <div
           role="tablist"
           aria-label="儲值教學"
-          className="mb-6 flex gap-1 overflow-x-auto scrollbar-hide border-b border-gray-200"
+          className="mb-6 flex gap-2 overflow-x-auto scrollbar-hide"
         >
           {gameCategories.map((category) => {
             const selected = category.id === activeId;
@@ -47,10 +47,10 @@ export default function GameCategories() {
                 aria-selected={selected}
                 aria-controls={`panel-${category.id}`}
                 onClick={() => setActiveId(category.id)}
-                className={`shrink-0 px-3.5 py-2.5 text-sm font-medium transition ${
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition ${
                   selected
-                    ? "text-orange-600 shadow-[inset_0_-2px_0_0_var(--color-orange-500)]"
-                    : "text-gray-500 hover:text-gray-800"
+                    ? "bg-[#f17300] text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
                 {category.label}

@@ -1252,6 +1252,7 @@ export type TopupDenom = {
   bonus: number; // 加碼贈送點數
   price: number; // 售價（TWD）
   name?: string; // 非點數商品的名稱（月卡、通行證…）
+  image?: string; // 商品圖示；有值時卡片以圖片呈現，否則顯示純文字面額
   tag?: string; // 角標：熱門 / 超值 / 首購 +50% …
 };
 
@@ -1334,6 +1335,7 @@ export const quickTopupGames: Record<string, QuickTopupGame> = {
         bonus: 0,
         price: 330,
         name: "星軌月卡・30 天",
+        image: "https://picsum.photos/seed/nova-monthly-pass/240/160",
         tag: "每日登入領鑽",
       },
     ],

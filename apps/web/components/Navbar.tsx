@@ -6,7 +6,6 @@ const links = [
   { href: "#member", label: "會員中心" },
   { href: "/topup", label: "購點儲值" },
   { href: "/topup-event", label: "儲值活動" },
-  { href: "#entertainment", label: "娛樂中心" },
   { href: "#login-center", label: "登錄中心" },
 ];
 

@@ -240,16 +240,18 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
           {/* 1. 面額 */}
           <div>
             <FieldLabel>選擇儲值面額</FieldLabel>
-            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="mt-3 grid grid-cols-2 items-stretch gap-3 sm:grid-cols-3">
               {game.denoms.map((d) => {
                 const selected = d.id === denomId;
+                const label =
+                  d.name ?? `${d.base.toLocaleString()} ${game.currency}`;
                 return (
                   <button
                     key={d.id}
                     type="button"
                     aria-pressed={selected}
                     onClick={() => setDenomId(d.id)}
-                    className={`relative flex flex-col items-center justify-center gap-1 rounded-lg border px-3 py-4 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 ${
+                    className={`relative flex h-full min-h-[7.5rem] flex-col items-center rounded-lg border px-3 py-4 text-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 ${
                       selected
                         ? "border-orange-500 bg-orange-50 ring-2 ring-orange-500/20"
                         : "border-gray-200 hover:border-orange-300"
@@ -260,15 +262,37 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
                         {d.tag}
                       </span>
                     ) : null}
-                    <span className="text-sm font-bold text-gray-900">
-                      {d.name ?? `${d.base.toLocaleString()} ${game.currency}`}
+
+                    {/* 面額主體：圖示或純文字，固定高度讓每張卡一致 */}
+                    <span className="flex h-12 w-full items-center justify-center">
+                      {d.image ? (
+                        <img
+                          src={d.image}
+                          alt={label}
+                          className="max-h-12 w-auto object-contain"
+                        />
+                      ) : (
+                        <span className="text-sm font-bold leading-tight text-gray-900">
+                          {label}
+                        </span>
+                      )}
                     </span>
-                    {d.bonus > 0 ? (
-                      <span className="text-xs font-medium text-orange-600">
-                        +{d.bonus.toLocaleString()} 加碼
-                      </span>
-                    ) : null}
-                    <span className="mt-1 text-sm text-gray-500">
+
+                    {/* 次要說明列：加碼 > 圖示商品名 > 留白，恆為一行 */}
+                    <span
+                      className={`mt-1 min-h-[1rem] w-full truncate text-xs font-medium ${
+                        d.bonus > 0 ? "text-orange-600" : "text-gray-500"
+                      }`}
+                    >
+                      {d.bonus > 0
+                        ? `+${d.bonus.toLocaleString()} 加碼`
+                        : d.image
+                          ? label
+                          : ""}
+                    </span>
+
+                    {/* 價格：貼齊卡片底部 */}
+                    <span className="mt-auto pt-1 text-sm text-gray-500">
                       NT$ {d.price.toLocaleString()}
                     </span>
                   </button>

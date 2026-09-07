@@ -92,7 +92,7 @@ export default function Rankings() {
             <h3 className="mb-3 text-base font-semibold text-gray-900">
               {block.label}
             </h3>
-            <ul className="grid grid-cols-4 gap-3">
+            <ul className="grid grid-cols-4 gap-4">
               {block.items.map((item) => (
                 <li key={item.id}>
                   {/* href 之後換成實際導向頁面 */}
@@ -104,7 +104,7 @@ export default function Rankings() {
                         className="transition duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h4 className="mt-1.5 line-clamp-2 text-sm font-medium text-gray-900 transition group-hover:text-orange-600">
+                    <h4 className="mt-2 line-clamp-2 text-sm font-medium text-gray-900 transition group-hover:text-orange-600">
                       {item.title}
                     </h4>
                   </a>

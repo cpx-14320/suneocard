@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/sections/HeroCarousel";
+import PromoPopup from "@/components/PromoPopup";
 import Rankings from "@/components/sections/Rankings";
 import QuickMenu from "@/components/sections/QuickMenu";
 import FeaturedPicks from "@/components/sections/FeaturedPicks";
@@ -20,6 +21,7 @@ export default function Home() {
       <GameCategories />
       <GameNews />
       <Creators />
+      <PromoPopup />
     </main>
   );
 }
